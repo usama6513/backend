@@ -3,8 +3,6 @@ name: Deploy to Hugging Face
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   deploy:
@@ -18,32 +16,23 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+    - name: Install Hugging Face Hub
+      run: pip install huggingface-hub
 
     - name: Deploy to Hugging Face
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        HF_SPACE_ID: usama6513/project
       run: |
-        # Install Hugging Face Hub CLI
-        pip install huggingface-hub
+        # Clone the space repository
+        git clone https://user:$HF_TOKEN@huggingface.co/spaces/usama6513/project hf-space
 
-        # Login to Hugging Face
-        huggingface-cli login --token $HF_TOKEN
+        # Copy all files except .git and .github
+        rsync -av --exclude='.git' --exclude='.github' --exclude='hf-space' . hf-space/
 
-        # Clone the space
-        git clone https://huggingface.co/spaces/$HF_SPACE_ID hf-space
-
-        # Copy files to space
-        cp -r * hf-space/
+        # Commit and push changes
         cd hf-space
-
-        # Commit and push
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
+        git config user.email "action@github.com"
+        git config user.name "GitHub Action"
         git add .
-        git commit -m "Deploy from GitHub Action" || exit 0
-        git push
+        git commit -m "Deploy from GitHub Action - $(date)" || exit 0
+        git push origin main
