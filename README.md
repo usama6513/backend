@@ -1,3 +1,12 @@
+---
+title: Backend API
+emoji: 🚀
+colorFrom: purple
+colorTo: red
+sdk: docker
+pinned: false
+---
+
 # Backend API
 
 This is a FastAPI backend application deployed on Hugging Face Spaces.
@@ -24,4 +33,6 @@ uvicorn src.main:app --reload
 
 ## Deployment
 
-This application is automatically deployed to Hugging Face Spaces when changes are pushed to the main branch of the GitHub repository.# Testing automatic deployment
+This application is automatically deployed to Hugging Face Spaces when changes are pushed to the main branch of the GitHub repository.
+
+# Testing automatic deployment
