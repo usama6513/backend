@@ -24,4 +24,4 @@ uvicorn src.main:app --reload
 
 ## Deployment
 
-This application is automatically deployed to Hugging Face Spaces when changes are pushed to the main branch of the GitHub repository.
+This application is automatically deployed to Hugging Face Spaces when changes are pushed to the main branch of the GitHub repository.# Testing automatic deployment
