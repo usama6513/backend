@@ -4,8 +4,8 @@ emoji: 🚀
 colorFrom: purple
 colorTo: red
 sdk: docker
-sdk_version: 3.11
-app_file: src/main.py
+sdk_version: 3.11.0
+app_file: app.py
 pinned: false
 ---
 
