@@ -35,4 +35,4 @@ uvicorn src.main:app --reload
 
 This application is automatically deployed to Hugging Face Spaces when changes are pushed to the main branch of the GitHub repository.
 
-# Testing automatic deployment
+Testing automatic deployment
